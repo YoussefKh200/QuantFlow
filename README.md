@@ -45,16 +45,46 @@ The diagrams below are taken from the `img/` folder — they illustrate the plat
 ### Screenshots
 
 <p align="center">
-  <img src="img/Capture d'écran 2026-06-04 230639.png" alt="Overview" width="700" />
-</p>
-
-<p align="center">
   <img src="img/Capture d'écran 2026-06-04 230804.png" alt="Dealer map" width="700" />
 </p>
 
 <p align="center">
   <img src="img/Capture d'écran 2026-06-04 230812.png" alt="Options chain" width="700" />
 </p>
+
+<p align="center">
+  <img src="img/Capture d'écran 2026-06-04 230822.png" alt="Overview" width="700" />
+</p>
+
+<p align="center">
+  <img src="img\Capture d'écran 2026-06-04 230830.png" alt="Overview" width="700" />
+</p>
+
+<p align="center">
+  <img src="img\Capture d'écran 2026-06-04 230837.png" alt="Overview" width="700" />
+</p>
+
+<p align="center">
+  <img src="img\Capture d'écran 2026-06-04 230844.png" alt="Overview" width="700" />
+</p>
+
+<p align="center">
+  <img src="img\Capture d'écran 2026-06-04 230851.png" alt="Overview" width="700" />
+</p>
+
+<p align="center">
+  <img src="img\Capture d'écran 2026-06-04 230858.png" alt="Overview" width="700" />
+</p>
+
+<p align="center">
+  <img src="img\Capture d'écran 2026-06-04 230905.png" alt="Overview" width="700" />
+</p>
+
+<p align="center">
+  <img src="img\Capture d'écran 2026-06-04 230912.png" alt="Overview" width="700" />
+</p>
+
+
 
 If you'd like different screenshots or captions, tell me which ones to use and I will update them.
 
