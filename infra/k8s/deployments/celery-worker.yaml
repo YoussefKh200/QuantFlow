@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quantflow-celery-worker
+  namespace: quantflow
+  labels:
+    app: quantflow-celery-worker
+    tier: worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quantflow-celery-worker
+  template:
+    metadata:
+      labels:
+        app: quantflow-celery-worker
+        tier: worker
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: celery-worker
+          image: quantflow/backend:latest
+          command:
+            - celery
+            - -A
+            - app.tasks.celery_app
+            - worker
+            - --loglevel=info
+            - --concurrency=4
+            - --queues=options,dealer,research,flow,earnings,default
+            - --hostname=worker@%h
+          envFrom:
+            - configMapRef:
+                name: quantflow-config
+            - secretRef:
+                name: quantflow-secrets
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2000m"
+              memory: "4Gi"
+          livenessProbe:
+            exec:
+              command:
+                - celery
+                - -A
+                - app.tasks.celery_app
+                - inspect
+                - ping
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            failureThreshold: 3

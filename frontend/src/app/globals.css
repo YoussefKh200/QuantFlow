@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --scrollbar-track: #0a0a0f;
+  --scrollbar-thumb: #1e1e2e;
+  --scrollbar-thumb-hover: #2a2a3e;
+}
+
+/* Global scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb  { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+
+/* Selection */
+::selection { background: rgba(99, 102, 241, 0.3); }
+
+/* Smooth transitions for interactive elements */
+@layer base {
+  button, a, input, select { @apply transition-colors duration-150; }
+  input, select {
+    @apply bg-terminal-surface border border-terminal-border rounded-md
+           text-text-primary placeholder-text-muted
+           focus:outline-none focus:ring-1 focus:ring-brand focus:border-brand;
+  }
+}
+
+@layer components {
+  /* Metric card */
+  .metric-card {
+    @apply bg-terminal-surface border border-terminal-border rounded-lg p-4;
+  }
+
+  /* Terminal table */
+  .terminal-table {
+    @apply w-full text-sm;
+  }
+  .terminal-table th {
+    @apply text-text-muted font-medium text-xs uppercase tracking-wider
+           border-b border-terminal-border px-3 py-2 text-right;
+  }
+  .terminal-table th:first-child { @apply text-left; }
+  .terminal-table td {
+    @apply border-b border-terminal-border/50 px-3 py-1.5
+           text-right font-mono text-xs text-text-primary;
+  }
+  .terminal-table td:first-child { @apply text-left font-sans; }
+  .terminal-table tr:hover td { @apply bg-terminal-elevated; }
+
+  /* Level badge (call wall, put wall, etc.) */
+  .level-badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-2xs font-medium
+           border;
+  }
+
+  /* Regime badge */
+  .regime-long  { @apply bg-bull/10 text-bull border-bull/20; }
+  .regime-short { @apply bg-bear/10 text-bear border-bear/20; }
+  .regime-neutral { @apply bg-warn/10 text-warn border-warn/20; }
+
+  /* Flow type badges */
+  .badge-sweep { @apply bg-brand/15 text-brand-bright border-brand/30; }
+  .badge-block { @apply bg-info/10 text-info border-info/20; }
+  .badge-split { @apply bg-terminal-muted text-text-secondary border-terminal-border; }
+
+  /* Connection status dot */
+  .ws-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+  .ws-dot-connected    { @apply bg-bull animate-pulse; }
+  .ws-dot-connecting   { @apply bg-warn animate-pulse-fast; }
+  .ws-dot-disconnected { @apply bg-bear; }
+
+  /* Sidebar nav item */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm
+           text-text-secondary hover:text-text-primary hover:bg-terminal-elevated
+           transition-colors cursor-pointer;
+  }
+  .nav-item-active {
+    @apply text-text-primary bg-terminal-elevated border-l-2 border-brand;
+  }
+}
+
+/* ECharts / Plotly overrides */
+.echarts-container { width: 100% !important; }
+.js-plotly-plot .plotly { background: transparent !important; }

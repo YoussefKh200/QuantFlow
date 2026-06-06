@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quantflow-config
+  namespace: quantflow
+data:
+  APP_ENV: "production"
+  LOG_LEVEL: "INFO"
+  POSTGRES_HOST: "postgres-service"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "quantflow"
+  POSTGRES_USER: "quantflow"
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  RABBITMQ_HOST: "rabbitmq-service"
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: "quantflow"
+  API_URL: "https://api.quantflow.io"
+  WS_URL: "wss://api.quantflow.io/ws"
+  ALLOWED_ORIGINS: "https://quantflow.io,https://www.quantflow.io"
+  DB_POOL_SIZE: "20"
+  DB_MAX_OVERFLOW: "40"

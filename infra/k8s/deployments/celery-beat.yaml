@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quantflow-celery-beat
+  namespace: quantflow
+  labels:
+    app: quantflow-celery-beat
+    tier: scheduler
+spec:
+  replicas: 1   # MUST be 1 — only one beat scheduler
+  selector:
+    matchLabels:
+      app: quantflow-celery-beat
+  template:
+    metadata:
+      labels:
+        app: quantflow-celery-beat
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: celery-beat
+          image: quantflow/backend:latest
+          command:
+            - celery
+            - -A
+            - app.tasks.celery_app
+            - beat
+            - --loglevel=info
+          envFrom:
+            - configMapRef:
+                name: quantflow-config
+            - secretRef:
+                name: quantflow-secrets
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

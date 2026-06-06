@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quantflow-backend
+  namespace: quantflow
+  labels:
+    app: quantflow-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: quantflow-backend
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+    - name: metrics
+      port: 9090
+      targetPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quantflow-frontend
+  namespace: quantflow
+spec:
+  type: ClusterIP
+  selector:
+    app: quantflow-frontend
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
